@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Leonardo Cortez - Bookmarks</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+	<meta name="viewport" content="user-scalable=no, width=device-width" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssreset/cssreset-min.css">
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.4.1/build/cssbase/cssbase-min.css">
+	<script type="text/javascript">		$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?id=27985802@N04&lang=en-us&format=json&jsoncallback=?", function(data){
+		  $.each(data.items, function(i,item){
+		    $("<img/>").attr("src", item.media.m).appendTo("#images").wrap("<a href='" + item.link + "'></a>");
+		  });
+		});
+	</script>
+	<style type="text/css">
+	<!--
+		body{width:80%;margin-left:auto;margin-right:auto}
+		a{padding:0 0 .5em .5em}
+	-->
+	</style>	
+</head>
+<body>
+<h1>Gallery</h1>
+<div id="images"></div>
+</body>
+</html>
+
