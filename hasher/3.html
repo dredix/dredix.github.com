@@ -1,0 +1,59 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>Hasher 3</title>
+	<meta name="viewport" content="user-scalable=no, width=device-width">
+	<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+	<script type="text/javascript">
+    var processKeyUp = function (f) {
+      var sha3 = CryptoJS.SHA3(f.decoded.value, { outputLength: 224 }).toString();
+      var i, character, code;
+      var b26 = "", shifted = "";
+      var digit = 7;
+      for (i = 0; i < sha3.length - 4; i += 4) {
+        b26 += parseInt(sha3.substr(i, 4), 16).toString(26);
+      }
+      for (i = 0; i < 15; i++) {
+        code = parseInt(b26.charCodeAt(i));
+        character = b26.charAt(i);
+        if (character >= "0" && character <= "9") { 
+          code += 65;
+          digit = parseInt(character);
+        }
+        shifted += i == 0 ? String.fromCharCode(code).toUpperCase() : 
+                   i < 14 ? String.fromCharCode(code) :
+                            digit;
+      }
+      
+      f.txtHash.value = sha3;
+      f.txtBase64.value = b26;
+      f.txtHint.value = shifted + String.fromCharCode(digit + 35);
+    };
+	</script>
+
+	<style type="text/css">
+		input.InputField 
+		{
+			width: 100%;
+		}
+		input#txtHint {
+			font-family: Arial, sans-serif;
+			font-size: 200%;
+		}
+	</style>
+<style type="text/css"></style></head>
+<body>
+	<h1>Hasher/Encoder 3</h1>
+	<form action="">
+	<p>Enter a string</p>
+	<input type="password" id="decoded" name="decoded" value="" onkeyup="processKeyUp(this.form)" class="InputField">
+	<p></p>
+	<p>SHA3 hash</p>
+	<input type="text" id="txtHash" name="txtHash" value="" class="InputField">
+	<p>Encoded data</p>
+	<input type="text" id="txtBase64" name="txtBase64" value="" class="InputField">
+	<p></p>
+	<input type="text" id="txtHint" name="txtHint" value="" class="InputField">
+	<p></p>
+	<input id="btnCalculate" type="button" value="Calculate" onclick="processKeyUp(this.form)">
+	</form>
+</body>
+</html>
