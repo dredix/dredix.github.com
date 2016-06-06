@@ -1,8 +1,9 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
   <title>Hasher 3</title>
-	<meta name="viewport" content="user-scalable=no, width=device-width">
-	<script src="sha3-min.js"></script>
-	<script type="text/javascript">
+    <meta name="viewport" content="user-scalable=no, width=device-width">
+    <script src="core-min.js"></script>
+    <script src="sha3-min.js"></script>
+    <script type="text/javascript">
     var processKeyUp = function (f) {
       var sha3 = CryptoJS.SHA3(f.decoded.value, { outputLength: 224 }).toString();
       var i, character, code;
